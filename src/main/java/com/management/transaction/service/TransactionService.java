@@ -106,16 +106,6 @@ public class TransactionService {
             throw new IllegalArgumentException("Invalid account number!");
         }
         Account account = getAccountByAccountNumber(accountNumber);
-        //account.setAccountNumber(accountNumber); // Only setting accountNumber for the query
         return transactionRepository.findByAccountOrderByTimestampDesc(account);
     }
-
-    /*public List<Transaction> getTransactionHistory(Long accountId) {
-        if (accountId <= 0) {
-            throw new IllegalArgumentException("Invalid account id!");
-        }
-        //Account account = new Account();
-        //account.setId(accountId);
-        return transactionRepository.findByAccountId(accountId);
-    }*/
 }

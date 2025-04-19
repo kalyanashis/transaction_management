@@ -8,5 +8,4 @@ import java.util.List;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
     List<Transaction> findByAccountOrderByTimestampDesc(Account account);
-    List<Transaction> findByAccountId(Long accountId);
 }
