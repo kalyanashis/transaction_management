@@ -87,8 +87,7 @@ public class TransactionService {
     }
 
     private String generateAccountNumber() {
-        // Simple implementation - consider more robust approaches for real systems
-        return UUID.randomUUID().toString().substring(0, 8).toUpperCase(); //10
+        return UUID.randomUUID().toString().substring(0, 8).toUpperCase();
     }
 
     public void logTransaction(Account account, String type, BigDecimal amount, String description) {
@@ -100,8 +99,8 @@ public class TransactionService {
         transactionRepository.save(transaction);
     }
 
+    @Transactional
     public List<Transaction> getTransactionHistory(String accountNumber) {
-        // Ideally, you would handle exceptions properly here
         if (accountNumber.isEmpty()) {
             throw new IllegalArgumentException("Invalid account number!");
         }
