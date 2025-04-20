@@ -19,12 +19,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TransactionController {
 
-    private TransactionService transactionService;
+    private final TransactionService transactionService;
 
-    @Autowired
+    /*@Autowired
     public TransactionController(TransactionService transactionService) {
         this.transactionService = transactionService;
-    }
+    }*/
 
     @PostMapping
     public ResponseEntity<Account> createAccount(@Valid @RequestBody AccountCreationRequest request) {
