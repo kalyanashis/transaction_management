@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleGlobalException(Exception ex, WebRequest request) {
         Map<String, Object> body = new HashMap<>();
         body.put("message", "An unexpected error occurred.");
-        // Consider logging the exception details for debugging
+        // Consider logging the exception details for debugging purpose
         return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
