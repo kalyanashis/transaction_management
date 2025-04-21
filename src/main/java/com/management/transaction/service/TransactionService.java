@@ -44,7 +44,7 @@ public class TransactionService {
         Account account = getAccountByAccountNumber(accountNumber);
         account.setBalance(account.getBalance().add(amount));
         accountRepository.save(account);
-        logTransaction(account, "DEPOSIT", amount, "Deposit amount: " + amount);
+        logTransaction(account, "DEPOSIT", amount, "Deposit of ₹" + amount + " successful");
     }
 
     @Transactional
@@ -58,7 +58,7 @@ public class TransactionService {
         }
         account.setBalance(account.getBalance().subtract(amount));
         accountRepository.save(account);
-        logTransaction(account, "WITHDRAWAL", amount, "Withdrawal of $" + amount);
+        logTransaction(account, "WITHDRAWAL", amount, "Withdrawal of ₹" + amount + " successful");
     }
 
     @Transactional
@@ -79,11 +79,11 @@ public class TransactionService {
 
         fromAccount.setBalance(fromAccount.getBalance().subtract(amount));
         accountRepository.save(fromAccount);
-        logTransaction(fromAccount, "TRANSFER_SENT", amount, "Transfer to account " + toAccountNumber);
+        logTransaction(fromAccount, "TRANSFER_SENT", amount, "Transfer to account " + toAccountNumber + " successful");
 
         toAccount.setBalance(toAccount.getBalance().add(amount));
         accountRepository.save(toAccount);
-        logTransaction(toAccount, "TRANSFER_RECEIVED", amount, "Transfer from account " + fromAccountNumber);
+        logTransaction(toAccount, "TRANSFER_RECEIVED", amount, "Transfer from account " + fromAccountNumber + " successful");
     }
 
     private String generateAccountNumber() {
