@@ -44,7 +44,7 @@ public class TransactionController {
         return ResponseEntity.ok("Deposit successful");
     }
 
-    @PostMapping("/{accountNumber}//withdraw")
+    @PostMapping("/{accountNumber}/withdraw")
     public ResponseEntity<String> withdraw(@PathVariable String accountNumber, @RequestParam BigDecimal amount) {
         transactionService.withdraw(accountNumber, amount);
         return ResponseEntity.ok("Withdrawal successful");
