@@ -7,6 +7,7 @@ import com.management.transaction.model.Transaction;
 import com.management.transaction.model.TransactionType;
 import com.management.transaction.repository.AccountRepository;
 import com.management.transaction.repository.TransactionRepository;
+import constant.MessageConstant;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,7 @@ public class TransactionService {
 
     public Account getAccountByAccountNumber(String accountNumber) {
         return accountRepository.findByAccountNumber(accountNumber)
-                .orElseThrow(() -> new InvalidAccountException("Account not found with specified account number: " + accountNumber));
+                .orElseThrow(() -> new InvalidAccountException(MessageConstant.INVALID_ACCOUNT + ": " + accountNumber));
     }
 
     @Transactional
@@ -104,7 +105,8 @@ public class TransactionService {
         if (accountNumber.isEmpty()) {
             throw new IllegalArgumentException("Invalid account number!");
         }
-        Account account = getAccountByAccountNumber(accountNumber);
-        return transactionRepository.findByAccountOrderByTimestampDesc(account);
+
+        return transactionRepository.findByAccountOrderByTimestampDesc(getAccountByAccountNumber(accountNumber))
+                .orElseThrow(() -> new InvalidAccountException("Transaction details not found with specified account number: " + accountNumber));
     }
 }

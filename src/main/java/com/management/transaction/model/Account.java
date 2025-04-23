@@ -4,9 +4,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -25,4 +27,7 @@ public class Account {
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal balance;
+
+    @CreationTimestamp
+    private LocalDateTime timestamp;
 }
